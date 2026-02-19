@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+instance/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+
+# Migrations cache
+migrations/__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db

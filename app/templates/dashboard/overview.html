@@ -1,0 +1,64 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<h2>Security Overview</h2>
+
+<div class="card">
+    <p><strong>Total Attacks:</strong> {{ summary.total_attacks }}</p>
+    <p><strong>Average Severity:</strong> {{ summary.average_severity }}</p>
+</div>
+
+<div class="card">
+    <h3>Severity Distribution</h3>
+    <canvas id="severityChart"></canvas>
+</div>
+
+<div class="card">
+    <h3>Attack Types</h3>
+    <canvas id="attackTypeChart"></canvas>
+</div>
+
+<script>
+    const severityData = {{ summary.severity_distribution | default([]) | tojson }};
+    const severityLabels = severityData.map(item => item.severity);
+    const severityCounts = severityData.map(item => item.count);
+
+    new Chart(document.getElementById("severityChart"), {
+        type: "bar",
+        data: {
+            labels: severityLabels,
+            datasets: [{
+                label: "Number of Attacks",
+                data: severityCounts,
+                backgroundColor: "#3b82f6"
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const attackTypeData = {{ attack_types | default([]) | tojson }};
+    const attackTypeLabels = attackTypeData.map(item => item.attack_type);
+    const attackTypeCounts = attackTypeData.map(item => item.count);
+
+    new Chart(document.getElementById("attackTypeChart"), {
+        type: "pie",
+        data: {
+            labels: attackTypeLabels,
+            datasets: [{
+                data: attackTypeCounts
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+
+{% endblock %}
