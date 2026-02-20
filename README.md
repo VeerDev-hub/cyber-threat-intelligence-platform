@@ -75,6 +75,8 @@ This project is a modular SOC-focused platform built with Flask. It ingests secu
 ### Phase 2
 - Add ML columns (`anomaly_score`, `risk_level`) + migration
 - Refactor ETL for cleaner processing flow
+- Add detector abstraction with ML stub detector
+- Add anomaly/risk metrics in analytics summary
 
 ### Phase 3
 - Add ML module (`features`, `train`, `inference`, `model loader`)

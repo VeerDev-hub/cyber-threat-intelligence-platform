@@ -3,6 +3,7 @@ from app.analytics.services import (
     top_attacker_ips,
     top_target_ports,
     attack_types_distribution,
+    risk_levels_distribution,
 )
 
 
@@ -20,3 +21,7 @@ def get_top_target_ports(limit=5):
 
 def get_attack_types_distribution():
     return attack_types_distribution()
+
+
+def get_risk_levels_distribution():
+    return risk_levels_distribution()
