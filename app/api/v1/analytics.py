@@ -7,6 +7,7 @@ from app.services.analytics_service import (
     get_top_attacker_ips,
     get_top_target_ports,
     get_attack_types_distribution,
+    get_risk_levels_distribution,
 )
 
 
@@ -35,3 +36,9 @@ def analytics_top_ports():
 @login_required
 def analytics_attack_types():
     return success_response(data=get_attack_types_distribution(), status_code=200)
+
+
+@analytics_v1_bp.route("/risk-levels", methods=["GET"])
+@login_required
+def analytics_risk_levels():
+    return success_response(data=get_risk_levels_distribution(), status_code=200)

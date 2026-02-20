@@ -35,6 +35,9 @@ class ProcessedLog(db.Model):
         nullable=False
     )
 
+    anomaly_score = db.Column(db.Float, nullable=True)
+    risk_level = db.Column(db.String(20), nullable=True)
+
     processed_at = db.Column(
         db.DateTime,
         default=datetime.utcnow,

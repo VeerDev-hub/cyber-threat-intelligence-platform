@@ -4,7 +4,8 @@ from app.analytics.services import (
     summary_metrics,
     top_attacker_ips,
     top_target_ports,
-    attack_types_distribution
+    attack_types_distribution,
+    risk_levels_distribution,
 )
 
 analytics_bp = Blueprint(
@@ -36,3 +37,9 @@ def analytics_top_ports():
 @login_required
 def analytics_attack_types():
     return jsonify(attack_types_distribution()), 200
+
+
+@analytics_bp.route("/risk-levels", methods=["GET"])
+@login_required
+def analytics_risk_levels():
+    return jsonify(risk_levels_distribution()), 200
